@@ -1,11 +1,9 @@
 /*
  * Add this script to login/admin/index.html before </body>.
- * Replace the placeholder with your deployed Worker endpoint.
  * This reports a page open, NOT a verified credential submission or login.
  */
 (() => {
-  const ALERT_ENDPOINT = "https://REPLACE-WITH-YOUR-WORKER.workers.dev/admin-login-alert";
-  if (ALERT_ENDPOINT.includes("REPLACE-WITH-YOUR-WORKER")) return;
+  const ALERT_ENDPOINT = "https://startup-intelligence-admin-alert.startupintelligence1.workers.dev/admin-login-alert";
   fetch(ALERT_ENDPOINT, {
     method: "POST",
     mode: "cors",
