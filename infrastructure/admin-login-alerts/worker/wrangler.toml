@@ -1,0 +1,9 @@
+name = "startup-intelligence-admin-alert"
+main = "index.js"
+compatibility_date = "2026-10-26"
+
+[[unsafe.bindings]]
+name = "ADMIN_ALERT_LIMITER"
+type = "ratelimit"
+namespace_id = "7391846205"
+simple = { limit = 5, period = 60 }
