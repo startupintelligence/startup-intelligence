@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /login/
+Sitemap: https://startupintelligence.github.io/startup-intelligence/sitemap.xml
