@@ -6,3 +6,16 @@
 @media(max-width:760px){.nav{min-height:70px;flex-wrap:wrap}.nav-actions{margin-left:auto}.menu-toggle{display:inline-flex}.theme-toggle{min-width:42px}.theme-toggle .theme-label{display:none}.nav-links{display:none;order:3;width:100%;margin:0;padding:6px 0 14px;align-items:stretch;flex-direction:column;gap:0}.nav-links.is-open{display:flex}.nav-links a{padding:12px 4px;border-top:1px solid var(--line);font-size:.92rem}.hero{padding:64px 0}.hero-grid{grid-template-columns:1fr}.hero-art{min-height:360px}.section{padding:64px 0}.section-head{grid-template-columns:1fr;gap:14px}.card-grid,.work-grid{grid-template-columns:1fr}.band{grid-template-columns:1fr;padding:26px}.toolbar{grid-template-columns:1fr}.catalog-grid{grid-template-columns:1fr}.footer-main{flex-direction:column}.plan-grid{grid-template-columns:1fr}.process-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:420px){.wrap{width:min(var(--max),calc(100% - 28px))}.brand{font-size:.78rem;gap:8px}.brand-mark{width:32px;height:32px}.hero h1{font-size:2.8rem}.actions .button{width:100%}.hero-art{padding:16px}.process-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Brand polish: use the repository's real SVG mark, with restrained glass and depth. */
+.brand-logo{display:block;width:40px;height:40px;flex:0 0 auto;object-fit:contain;filter:drop-shadow(0 5px 14px #178cff22)}
+.brand{gap:12px;letter-spacing:.065em}
+.site-header{background:color-mix(in srgb,var(--bg) 82%,transparent);box-shadow:0 8px 30px #0000000a}
+.button-primary{box-shadow:0 8px 24px #178cff20}
+.button-blue{box-shadow:0 8px 24px #178cff24}
+.service-card,.plan-card,.work-card,.catalog-card,.step-card{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.service-card:hover,.plan-card:hover,.work-card:hover,.catalog-card:hover,.step-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--cyan) 50%,var(--line));box-shadow:0 18px 42px #00000016}
+.hero-art{background:radial-gradient(ellipse at 82% 0%,#178cff28,transparent 48%),radial-gradient(ellipse at 0% 100%,#25d5f20b,transparent 42%),var(--panel)}
+::selection{background:var(--cyan);color:#06111b}
+@media(max-width:420px){.brand-logo{width:34px;height:34px}}
+@media(prefers-reduced-motion:reduce){.service-card,.plan-card,.work-card,.catalog-card,.step-card{transition:none}.service-card:hover,.plan-card:hover,.work-card:hover,.catalog-card:hover,.step-card:hover{transform:none}}
