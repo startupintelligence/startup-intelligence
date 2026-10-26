@@ -1,0 +1,14 @@
+name = "si-clerk-auth-worker"
+main = "src/index.ts"
+compatibility_date = "2026-10-26"
+
+# Create a KV namespace and replace the ID below before deploying.
+[[kv_namespaces]]
+binding = "ACCESS_REQUESTS"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+OWNER_EMAIL = "startupintelligence1@gmail.com"
+ALLOWED_ORIGIN = "https://startupintelligence.github.io"
+SITE_BASE_PATH = "/startup-intelligence/"
+# Set CLERK_SECRET_KEY and RESEND_API_KEY with `wrangler secret put`; never put them here.
