@@ -2,9 +2,8 @@ name = "startup-intelligence-admin-alert"
 main = "index.js"
 compatibility_date = "2026-10-26"
 
-# Configure a valid, unique rate-limit namespace ID for your Cloudflare account.
 [[unsafe.bindings]]
 name = "ADMIN_ALERT_LIMITER"
 type = "ratelimit"
-namespace_id = "1001"
+namespace_id = "7391846205"
 simple = { limit = 5, period = 60 }
