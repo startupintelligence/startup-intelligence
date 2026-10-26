@@ -34,6 +34,7 @@ export default {
 
     // IP is used only for rate limiting; it is not included in the email.
     const clientIp = request.headers.get("CF-Connecting-IP") || "unknown";
+    if (!env.ADMIN_ALERT_LIMITER) return reply({ ok: false, error: "Rate limiting is not configured." }, 503, origin);
     const rate = await env.ADMIN_ALERT_LIMITER.limit({ key: clientIp });
     if (!rate.success) return reply({ ok: false, error: "Please try again later." }, 429, origin);
 
@@ -70,7 +71,7 @@ export default {
           "",
           "This notification does not mean authentication succeeded.",
           "Admin access must require verified authentication and server-side authorization."
-        ].join("\\n")
+        ].join("\n")
       })
     });
     if (!sent.ok) return reply({ ok: false, error: "Email delivery failed." }, 502, origin);
