@@ -26,7 +26,7 @@
   let activeCategory = 'all';
   const renderCatalog = () => {
     const query = (search?.value || '').trim().toLowerCase();
-    const selected = category?.value || 'all';
+    const selected = category?.value || activeCategory;
     let visible = 0;
     const ordered = [...cards].sort((a,b) => (sort?.value === 'name' ? a.dataset.name.localeCompare(b.dataset.name) : sort?.value === 'category' ? a.dataset.category.localeCompare(b.dataset.category) || a.dataset.name.localeCompare(b.dataset.name) : Number(b.dataset.featured) - Number(a.dataset.featured)));
     ordered.forEach(card => {
@@ -38,6 +38,6 @@
     if (empty) empty.hidden = visible !== 0;
   };
   search?.addEventListener('input', renderCatalog); category?.addEventListener('change', renderCatalog); sort?.addEventListener('change', renderCatalog);
-  document.querySelectorAll('[data-category-filter]').forEach(button => button.addEventListener('click', () => { if (category) category.value = button.dataset.categoryFilter; document.querySelectorAll('[data-category-filter]').forEach(b => b.setAttribute('aria-pressed', String(b === button))); renderCatalog(); }));
+  document.querySelectorAll('[data-category-filter]').forEach(button => button.addEventListener('click', () => { activeCategory = button.dataset.categoryFilter; if (category) category.value = activeCategory; document.querySelectorAll('[data-category-filter]').forEach(b => b.setAttribute('aria-pressed', String(b === button))); renderCatalog(); }));
   if (cards.length) renderCatalog();
 })();
