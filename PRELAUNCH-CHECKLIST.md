@@ -56,7 +56,7 @@ Favicon files already exist in `assets/icons/`: SVG, ICO, 16/32/48/64 PNG, Apple
 
 ## 5. Sitemap and robots
 
-`sitemap.xml` lists the seven public canonical pages. `robots.txt` allows public crawling and excludes `/login/`. After publishing, open `/startup-intelligence/sitemap.xml` and `/startup-intelligence/robots.txt` to confirm they return 200. Submit the sitemap to Search Console only if you choose to use it.
+`sitemap.xml` lists the seven public canonical pages. `robots.txt` allows crawling, while login pages use `noindex,nofollow` so crawlers can see the directive. Login URLs are not listed in the sitemap. After publishing, open `/startup-intelligence/sitemap.xml` and `/startup-intelligence/robots.txt` to confirm they return 200. Submit the sitemap to Search Console only if you choose to use it.
 
 ## 6. Image alt text
 
