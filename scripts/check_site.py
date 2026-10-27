@@ -18,7 +18,6 @@ class Page(HTMLParser):
         self.description = False
         self.viewport = False
         self.links = []
-        self.images = []
         self.errors = []
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
@@ -59,9 +58,9 @@ def target_for(page_path, href):
     return path
 
 def main():
-    html_files = sorted(p for p in ROOT.rglob("*.html") if ".git" not in p.parts)
-    available = {p.relative_to(ROOT).as_posix() for p in html_files}
-    available.update(p.relative_to(ROOT).as_posix() for p in ROOT.rglob("*") if p.is_file())
+    # Google Search Console's verification token is intentionally not a normal HTML page.
+    html_files = sorted(p for p in ROOT.rglob("*.html") if ".git" not in p.parts and not p.name.startswith("google"))
+    available = {p.relative_to(ROOT).as_posix() for p in ROOT.rglob("*") if p.is_file()}
     failures = []
     for file in html_files:
         rel = file.relative_to(ROOT).as_posix()
@@ -81,7 +80,7 @@ def main():
         print("Site checks failed:")
         print("\n".join(f"- {f}" for f in failures))
         return 1
-    print(f"Site checks passed for {len(html_files)} HTML files; local links and referenced assets resolve.")
+    print(f"Site checks passed for {len(html_files)} HTML pages; local links and referenced assets resolve.")
     return 0
 
 if __name__ == "__main__": sys.exit(main())
