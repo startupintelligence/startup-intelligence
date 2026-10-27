@@ -7,6 +7,7 @@ Updated: 27 October 2026. This is a working checklist, not a legal compliance ce
 - [x] Added a repeatable Python static-site checker at `scripts/check_site.py` for page titles, descriptions, viewport metadata, empty links, image alt attributes, and local links/assets.
 - [x] Added GitHub Actions workflow `.github/workflows/site-checks.yml` to run the static checker on pushes and pull requests targeting `main`.
 - [x] Marked the Clerk authentication starter-template routes `noindex,nofollow` and replaced them with clear development-only notices; they do not claim to authenticate users or process access requests.
+- [x] Added Escape-to-close and keyboard-focus restoration for the mobile menus on the Privacy Policy and Terms pages.
 - [x] Kept existing responsive overflow safeguards, mobile menu keyboard handling, favicon assets, branded 404, sitemap, robots policy, and shared theme/menu scripts.
 
 ## Must still be tested or completed before public launch

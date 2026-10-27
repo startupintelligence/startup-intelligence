@@ -101,14 +101,19 @@
           menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
           menu.classList.toggle('is-open', open);
         });
-        menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+        function closeMenu({ returnFocus = false } = {}) {
           menu.classList.remove('is-open');
           menuButton.setAttribute('aria-expanded', 'false');
           menuButton.setAttribute('aria-label', 'Open navigation menu');
-        }));
-        window.addEventListener('resize', () => { if (window.innerWidth > 760) {
-          menu.classList.remove('is-open'); menuButton.setAttribute('aria-expanded', 'false'); menuButton.setAttribute('aria-label', 'Open navigation menu');
-        }});
+          if (returnFocus) menuButton.focus();
+        }
+        menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => closeMenu()));
+        document.addEventListener('keydown', event => {
+          if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+            closeMenu({ returnFocus: true });
+          }
+        });
+        window.addEventListener('resize', () => { if (window.innerWidth > 760) closeMenu(); });
       }
     })();
   </script>
