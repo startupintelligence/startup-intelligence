@@ -16,6 +16,12 @@
   const closeMenu = () => { menu?.classList.remove('is-open'); menuButton?.setAttribute('aria-expanded', 'false'); menuButton?.setAttribute('aria-label', 'Open navigation menu'); };
   menuButton?.addEventListener('click', () => { const open = menuButton.getAttribute('aria-expanded') !== 'true'; menuButton.setAttribute('aria-expanded', String(open)); menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu'); menu?.classList.toggle('is-open', open); });
   menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && menu?.classList.contains('is-open')) {
+      closeMenu();
+      menuButton?.focus();
+    }
+  });
   window.addEventListener('resize', () => { if (window.innerWidth > 760) closeMenu(); });
   const search = document.querySelector('[data-catalog-search]');
   const category = document.querySelector('[data-catalog-category]');
