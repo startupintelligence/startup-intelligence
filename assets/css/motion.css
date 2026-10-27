@@ -1,0 +1,23 @@
+/* Startup Intelligence — restrained motion system. No external libraries. */
+:root { --si-motion-fast: 160ms; --si-motion-base: 260ms; --si-motion-ease: cubic-bezier(.2,.7,.2,1); }
+html { scroll-behavior: smooth; }
+:where(a,button,summary,input,select,textarea) { -webkit-tap-highlight-color: transparent; }
+:where(a,button,[role="button"]):focus-visible { outline: 2px solid var(--accent, #4d9dff); outline-offset: 3px; }
+@media (hover:hover) and (pointer:fine) {
+  a.button:hover, button.button:hover, .nav-actions a:hover { transform: translateY(-2px); }
+  .service-card:hover, .step-card:hover { transform: translateY(-3px); }
+}
+.service-card, .step-card { transition: transform var(--si-motion-base) var(--si-motion-ease), border-color var(--si-motion-base) ease, box-shadow var(--si-motion-base) ease; }
+.si-reveal-ready [data-si-reveal] { opacity: 0; transform: translateY(16px); transition: opacity 520ms var(--si-motion-ease), transform 520ms var(--si-motion-ease); transition-delay: var(--si-reveal-delay, 0ms); }
+.si-reveal-ready [data-si-reveal].is-visible { opacity: 1; transform: none; }
+.si-stagger > [data-si-reveal]:nth-child(2) { --si-reveal-delay: 70ms; }
+.si-stagger > [data-si-reveal]:nth-child(3) { --si-reveal-delay: 140ms; }
+.si-stagger > [data-si-reveal]:nth-child(4) { --si-reveal-delay: 210ms; }
+.si-stagger > [data-si-reveal]:nth-child(5) { --si-reveal-delay: 280ms; }
+.si-stagger > [data-si-reveal]:nth-child(6) { --si-reveal-delay: 350ms; }
+.si-pressed { transform: scale(.98); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; transition-delay: 0ms !important; }
+  .si-reveal-ready [data-si-reveal] { opacity: 1; transform: none; }
+}
