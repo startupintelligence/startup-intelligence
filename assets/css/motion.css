@@ -21,3 +21,35 @@ html { scroll-behavior: smooth; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; transition-delay: 0ms !important; }
   .si-reveal-ready [data-si-reveal] { opacity: 1; transform: none; }
 }
+
+
+/* Page-wide 3D motion: depth, hover tilt, and layered scroll entrances. */
+:root { --si-perspective: 1200px; }
+main > section, .trust-strip { transform-style: preserve-3d; }
+.si-3d-tilt {
+  transform: perspective(var(--si-perspective)) rotateX(var(--si-tilt-x, 0deg)) rotateY(var(--si-tilt-y, 0deg)) translateZ(0);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 420ms var(--si-motion-ease), border-color 260ms ease, box-shadow 260ms ease;
+}
+.si-3d-tilt.si-tilt-active { transition: transform 90ms linear, border-color 260ms ease, box-shadow 260ms ease; }
+.si-3d-tilt[data-si-depth] { box-shadow: 0 18px 46px rgba(0,0,0,.16); }
+.si-3d-tilt[data-si-depth]:hover { box-shadow: 0 26px 64px rgba(0,0,0,.25); }
+.si-3d-tilt > h2, .si-3d-tilt > h3, .si-3d-tilt > p, .si-3d-tilt > a { transform: translateZ(12px); }
+.si-reveal-ready main > section[data-si-reveal], .si-reveal-ready .trust-strip[data-si-reveal] {
+  opacity: 0; transform: perspective(1400px) translateY(26px) rotateX(1.4deg);
+  transition: opacity 700ms var(--si-motion-ease), transform 700ms var(--si-motion-ease);
+}
+.si-reveal-ready main > section[data-si-reveal].is-visible, .si-reveal-ready .trust-strip[data-si-reveal].is-visible {
+  opacity: 1; transform: perspective(1400px) translateY(0) rotateX(0);
+}
+.hero-art { transform-style: preserve-3d; }
+.hero-art .art-window { transform: translateZ(18px); }
+.hero-art .float-tag { transform: translateZ(42px); }
+@media (hover:none), (pointer:coarse) {
+  .si-3d-tilt { transform: none; will-change: auto; }
+  .si-3d-tilt > h2, .si-3d-tilt > h3, .si-3d-tilt > p, .si-3d-tilt > a { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .si-3d-tilt, .si-3d-tilt.si-tilt-active, .si-reveal-ready main > section[data-si-reveal], .si-reveal-ready .trust-strip[data-si-reveal] { transform: none !important; transition: none !important; will-change: auto; opacity: 1 !important; }
+}
