@@ -28,10 +28,20 @@
       menuButton.setAttribute('aria-expanded', String(!expanded));
       mobileNav.hidden = expanded;
     });
-    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    const closeMobileNav = (returnFocus = false) => {
       mobileNav.hidden = true;
       menuButton.setAttribute('aria-expanded', 'false');
-    }));
+      if (returnFocus) menuButton.focus();
+    };
+    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => closeMobileNav()));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !mobileNav.hidden) closeMobileNav(true);
+    });
+    document.addEventListener('pointerdown', event => {
+      if (!mobileNav.hidden && !mobileNav.contains(event.target) && !menuButton.contains(event.target)) {
+        closeMobileNav();
+      }
+    });
   }
 
   const budgetRange = document.querySelector('#budget-range');
