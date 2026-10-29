@@ -1,0 +1,9 @@
+/* Dependency-free animated selection background. */
+[data-animated-background] { --ab-bg: rgba(32, 34, 31, 0.07); position: relative; isolation: isolate; }
+[data-animated-background] > [data-id] { position: relative; z-index: 1; border-radius: 4px; text-decoration: none; }
+[data-animated-background] > [data-id]:focus-visible { outline: 2px solid var(--accent, #c7f36b); outline-offset: 3px; }
+[data-animated-background] > .animated-background__indicator { position: absolute; z-index: 0; top: 0; left: 0; display: block; width: 0; height: 0; border-radius: 4px; background: var(--ab-bg); opacity: 0; pointer-events: none; transform: translate3d(0,0,0); transition: transform 260ms cubic-bezier(.2,.8,.2,1), width 260ms cubic-bezier(.2,.8,.2,1), height 260ms cubic-bezier(.2,.8,.2,1), opacity 140ms ease; will-change: transform, width, height; }
+[data-animated-background] > .animated-background__indicator.is-visible { opacity: 1; }
+.nav[data-animated-background] { gap: 12px; }
+.nav[data-animated-background] > [data-id] { padding: 9px 11px; }
+@media (prefers-reduced-motion: reduce) { [data-animated-background] > .animated-background__indicator { transition: none; will-change: auto; } }
