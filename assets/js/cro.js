@@ -7,7 +7,6 @@
   const colors = { light: '#f5f5f0', dark: '#080e16', midnight: '#111318', forest: '#f5efe3' };
   let saved = '';
   try { saved = localStorage.getItem('si-theme') || ''; } catch {}
-  const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   function applyTheme(theme, save = false) {
     if (!allowed.has(theme)) theme = 'light';
     root.dataset.theme = theme;
@@ -15,7 +14,7 @@
     if (metaThemeColor) metaThemeColor.setAttribute('content', colors[theme]);
     if (save) { try { localStorage.setItem('si-theme', theme); } catch {} }
   }
-  applyTheme(allowed.has(saved) ? saved : (systemDark ? 'dark' : 'light'));
+  applyTheme(allowed.has(saved) ? saved : 'dark');
   selector.addEventListener('change', () => applyTheme(selector.value, true));
 })();
 

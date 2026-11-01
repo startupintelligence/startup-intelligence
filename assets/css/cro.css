@@ -47,3 +47,11 @@ html,body,.header,.service-card,.wizard,.budget-box,.standards,.budget-band,.clo
 .button-primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 @media(max-width:520px){.theme-control select{max-width:94px;padding-inline:7px;font-size:11px}.header{gap:8px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}html,body,.header,.service-card,.wizard,.budget-box,.standards,.budget-band,.closing,.footer{transition:none!important}}
+
+
+/* 60-30-10 colour hierarchy: 60% base canvas, 30% content surfaces, 10% purposeful highlights.
+   The active theme supplies the actual colours; these semantic tokens keep each role consistent. */
+:root { --si-colour-base:var(--bg); --si-colour-content:var(--paper); --si-colour-highlight:var(--accent); }
+body { background:var(--si-colour-base); }
+.service-card,.wizard,.budget-box { background:var(--si-colour-content); }
+.button-primary,.progress span { background:var(--si-colour-highlight); border-color:var(--si-colour-highlight); }
